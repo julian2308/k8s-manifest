@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: k8s-front
+  name: k8s-front
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: k8s-front
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: k8s-front
+    spec:
+      containers:
+      - image: julianalga/k8s-front:1.0.1
+        name: k8s-front-main
+        ports:
+        - containerPort: 3000
+        resources: {
+          requests: {
+            cpu: "150m",
+            memory: 300Mi
+          },
+          limits: {
+            cpu: "400m",
+            memory: "1Gi"
+          }           
+
+        }
+status: {}
