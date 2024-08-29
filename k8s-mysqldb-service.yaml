@@ -2,13 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    app: mysqldb
+    tier: mysqldb
   name: mysqldb
 spec:
   ports:
   - port: 3306
     protocol: TCP
     targetPort: 3306
+  cluserIp: None
   selector:
-    app: mysqldb
+    tier: mysqldb
   type: LoadBalancer
