@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysqldb
+spec:
+  selector:
+    matchLabels:
+      tier: mysqldb
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        tier: mysqldb
+    spec:
+      containers:
+      - image: mysql:8.0
+        name: mysqldb
+        resources:
+          requests:
+            cpu: 200m
+            memory: 200Mi
+          limits:
+            cpu: 500m
+            memory: 500Mi
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: '123456'
+        - name: MYSQLDB_USER
+          value: user
+        - name: MYSQLDB_USER_PASSWORD
+          value: '123456'
+        - name: MYSQLDB_DATABASE
+          value: 'products'
+        ports:
+        - containerPort: 3306
+          name: mysqldb
+        volumeMounts:
+        - name: mysqldb
+          mountPath: /var/lib/mysql
+      volumes:
+      - name: mysqldb
+        persistentVolumeClaim:
+          claimName: mysqldb-data
