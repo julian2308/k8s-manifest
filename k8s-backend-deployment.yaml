@@ -19,16 +19,6 @@ spec:
       containers:
       - image: julianalga/k8s-backend:1.0.3
         name: k8s-backend-main
-        readinessProbe:
-          failureThreshold: 2
-          httpGet:
-            path: /prueba
-            port: 8080
-            scheme: HTTP
-          initialDelaySeconds: 2
-          periodSeconds: 2
-          successThreshold: 1
-          timeoutSeconds: 1
         ports:
         - containerPort: 8080
         resources: {
