@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mysql_db
+  name: mysqldb
 spec:
   selector:
     matchLabels:
-      tier: mysql_db
+      tier: mysqldb
   strategy:
     type: Recreate
   template:
     metadata:
       labels:
-        tier: mysql_db
+        tier: mysqldb
     spec:
       containers:
       - image: mysql:8.0
-        name: mysql_db
+        name: mysqldb
         resources:
           requests:
             cpu: 200m
@@ -26,19 +26,19 @@ spec:
         env:
         - name: MYSQL_ROOT_PASSWORD
           value: 123456
-        - name: MARIADB_USER
+        - name: MYSQLDB_USER
           value: user
-        - name: MARIADB_USER_PASSWORD
+        - name: MYSQLDB_USER_PASSWORD
           value: 123456
-        - name: MARIADB_DATABASE
+        - name: MYSQLDB_DATABASE
           value: 'products'
         ports:
         - containerPort: 3306
-          name: mysql_db
+          name: mysqldb
         volumeMounts:
-        - name: mysql_db
+        - name: mysqldb
           mountPath: /var/lib/mysql
       volumes:
-      - name: mysql_db
+      - name: mysqldb
         persistentVolumeClaim:
           claimName: mysqldb-data
