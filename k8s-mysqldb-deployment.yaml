@@ -25,11 +25,11 @@ spec:
             memory: 500Mi
         env:
         - name: MYSQL_ROOT_PASSWORD
-          value: 123456
+          value: '123456'
         - name: MYSQLDB_USER
           value: user
         - name: MYSQLDB_USER_PASSWORD
-          value: 123456
+          value: '123456'
         - name: MYSQLDB_DATABASE
           value: 'products'
         ports:
