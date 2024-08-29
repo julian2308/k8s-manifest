@@ -6,7 +6,7 @@ metadata:
     app: k8s-front
   name: k8s-front
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: k8s-front
